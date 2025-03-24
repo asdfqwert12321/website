@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wildly Complex Blue, Green, and Yellow</title>
+    <title>Extremely Complex Blue, Green, and Yellow</title>
     <style>
-        /* General Reset */
+        /* Reset All */
         * {
             margin: 0;
             padding: 0;
@@ -15,84 +15,191 @@
         body, html {
             height: 100%;
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #001f3d, #004b6d);
+            background: radial-gradient(circle, rgba(0, 80, 160, 0.8), rgba(0, 128, 0, 0.6));
             color: #fff;
+            overflow: hidden;
         }
 
-        h1, h2 {
-            color: #e0f7fa;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        /* Animation keyframes */
+        @keyframes pulse {
+            0% { color: #e0f7fa; }
+            50% { color: #ffeb3b; }
+            100% { color: #e0f7fa; }
         }
 
-        /* Navigation */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Navigation Bar */
         nav {
             position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            background: #0288d1;
+            background: linear-gradient(135deg, #0288d1, #00c853);
             padding: 15px 0;
             text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            z-index: 2;
         }
 
         nav a {
             color: #fff;
             text-decoration: none;
-            margin: 0 15px;
-            font-size: 20px;
-            text-transform: uppercase;
+            font-size: 22px;
+            margin: 0 20px;
             letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         nav a:hover {
             color: #c5e1a5;
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
         }
 
-        /* Full Screen Background */
+        /* Full Background */
         .background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(0, 80, 160, 0.8), rgba(0, 128, 0, 0.6));
+            background: radial-gradient(circle, rgba(0, 80, 160, 0.4), rgba(0, 128, 0, 0.2));
             z-index: -1;
+            animation: bounce 3s infinite;
         }
 
-        /* Main Content Area */
-        .container {
+        /* Header */
+        .header {
+            text-align: center;
+            padding-top: 150px;
+        }
+
+        .header h1 {
+            font-size: 80px;
+            animation: pulse 2s infinite;
+            margin-bottom: 20px;
+        }
+
+        .header p {
+            font-size: 24px;
+            color: #c5e1a5;
+            margin-bottom: 40px;
+        }
+
+        /* Content Sections */
+        .section {
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100%;
-            text-align: center;
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(0, 80, 160, 0.8), rgba(0, 128, 0, 0.5));
+            margin: 40px 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .container h1 {
-            font-size: 60px;
+        .section h2 {
+            font-size: 40px;
             margin-bottom: 20px;
-            animation: pulse 1.5s infinite;
         }
 
-        .container p {
-            font-size: 24px;
-            margin-bottom: 40px;
-            color: #cddc39;
+        .section p {
+            font-size: 20px;
+            color: #fff;
+            text-align: center;
+            max-width: 600px;
         }
 
-        /* Card Styles */
+        /* Button Styling */
+        .button {
+            display: inline-block;
+            padding: 15px 25px;
+            background: linear-gradient(45deg, #ffeb3b, #00c853);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 22px;
+            margin-top: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(45deg, #00c853, #ffeb3b);
+        }
+
+        /* Tooltip Styling */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 120px;
+            background-color: rgba(0, 80, 160, 0.8);
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Cards Layout */
         .cards {
             display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
             gap: 20px;
-            margin-top: 40px;
+            margin-top: 50px;
         }
 
         .card {
             width: 250px;
             height: 350px;
-            background: linear-gradient(145deg, #7cb342, #c6ff00);
+            background: linear-gradient(145deg, #0288d1, #7cb342);
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card h3 {
+            padding: 15px;
+            background: #00c853;
+            color: #fff;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .card p {
+            padding: 70px 20px;
+            font-size: 16px;
+            color: #fff;
+            text-align: center;
         }
 
         .card:hover {
@@ -100,78 +207,98 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
         }
 
-        .card h2 {
-            padding: 15px;
-            font-size: 22px;
-            background: #0288d1;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            color: #fff;
-            text-transform: uppercase;
-        }
-
-        .card p {
-            padding: 20px;
-            font-size: 16px;
-        }
-
         /* Footer */
         footer {
             position: fixed;
             bottom: 0;
             width: 100%;
-            background: #0288d1;
-            padding: 10px 0;
+            background: linear-gradient(45deg, #00c853, #0288d1);
+            padding: 20px 0;
             text-align: center;
-            font-size: 16px;
-            color: #c5e1a5;
+            color: #fff;
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
-        /* Keyframe Animations */
-        @keyframes pulse {
-            0% {
-                color: #e0f7fa;
-            }
-            50% {
-                color: #ffeb3b;
-            }
-            100% {
-                color: #e0f7fa;
-            }
+        /* Miscellaneous Animation */
+        .shifting-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #0288d1, #7cb342, #ffeb3b);
+            background-size: 400% 400%;
+            animation: gradient-shift 10s ease infinite;
+            z-index: -1;
         }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
     </style>
 </head>
 <body>
+
     <div class="background"></div>
+
+    <!-- Navigation Bar -->
     <nav>
         <a href="#">Home</a>
+        <a href="#">Features</a>
         <a href="#">About</a>
-        <a href="#">Services</a>
         <a href="#">Contact</a>
     </nav>
 
-    <div class="container">
-        <h1>Welcome to the Wildly Complex Page</h1>
-        <p>Explore this dynamic layout created with only blue, green, and yellow.</p>
+    <!-- Shifting Background Layer -->
+    <div class="shifting-background"></div>
 
-        <div class="cards">
-            <div class="card">
-                <h2>Card 1</h2>
-                <p>This is a simple card with shades of green and blue.</p>
-            </div>
-            <div class="card">
-                <h2>Card 2</h2>
-                <p>This is another card, with gradient effects and a smooth hover transition.</p>
-            </div>
-            <div class="card">
-                <h2>Card 3</h2>
-                <p>Hover over the cards to see the magic of CSS animation.</p>
-            </div>
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Welcome to the Wildly Complex Web</h1>
+        <p>Exploring the vast world of blue, green, and yellow.</p>
+    </div>
+
+    <!-- Content Sections -->
+    <div class="section">
+        <div>
+            <h2>Section 1</h2>
+            <p>This is a complex section featuring overlapping gradients and animations.</p>
+            <a href="#" class="button">Learn More</a>
         </div>
     </div>
 
+    <div class="section">
+        <div>
+            <h2>Section 2</h2>
+            <p>Interactive buttons, animations, and gradient effects make this dynamic.</p>
+            <a href="#" class="button">Discover</a>
+        </div>
+    </div>
+
+    <!-- Card Layout Section -->
+    <div class="cards">
+        <div class="card">
+            <h3>Card 1</h3>
+            <p>This is a dynamically styled card with gradients and shadows.</p>
+        </div>
+        <div class="card">
+            <h3>Card 2</h3>
+            <p>Hovering over this card will give a cool animation and shadow effect.</p>
+        </div>
+        <div class="card">
+            <h3>Card 3</h3>
+            <p>Each card has its own unique gradient background.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
     <footer>
-        <p>Footer</p>
+        <p>Crafted with 💙 by the Web Wizards</p>
     </footer>
+
 </body>
 </html>
